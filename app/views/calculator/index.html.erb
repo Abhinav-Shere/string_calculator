@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>String Calculator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+    }
+    input[type="text"], textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    button {
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    .result {
+      font-size: 1.5em;
+      margin-top: 20px;
+      font-weight: bold;
+    }
+    .error {
+      color: red;
+      font-size: 1.2em;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>String Calculator</h1>
+
+    <!-- Form for user input -->
+    <%= form_tag(root_path, method: :get) do %>
+      <%= label_tag :numbers, "Enter numbers (comma, newline, or custom delimiter separated)" %>
+      <%= text_area_tag :numbers, @input, rows: 5 %>
+
+      <br>
+
+      <%= submit_tag "Calculate", class: "btn btn-primary" %>
+    <% end %>
+
+    <!-- Display results or error message -->
+    <% if @result.present? %>
+      <div class="result">Result: <%= @result %></div>
+    <% elsif @error_message.present? %>
+      <div class="error"><%= @error_message %></div>
+    <% end %>
+  </div>
+
+</body>
+</html>
